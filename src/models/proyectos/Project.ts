@@ -60,6 +60,24 @@ const projectSchema = new Schema<Proyecto>({
       },
     },
   ],
+},
+{
+  toJSON: {virtuals:true},
+  toObject: {virtuals:true}
 });
+
+projectSchema.virtual('avances', {
+  ref: 'Avance',
+  localField: '_id',
+  foreignField: 'proyecto'
+});
+
+projectSchema.virtual('inscripciones', {
+  ref: 'Inscription',
+  localField: '_id',
+  foreignField: 'proyecto'
+});
+
+
 
 export default model('Proyecto', projectSchema);

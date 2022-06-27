@@ -1,6 +1,10 @@
 import Project from "./Project";
 export const resolversProyecto = {
     Query: {
+      Proyectos: async(parent: any, args: any) => {
+        const proyectos = await Project.find().populate('lider').populate('avances').populate('inscripciones');
+        return proyectos;
+      }
     },
     Mutation: {
         crearProyecto: async (parent: any, args: any) => {

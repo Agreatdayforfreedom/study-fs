@@ -17,8 +17,9 @@ export enum Enum_TipoObjectivo {
 }
 
 export enum Enum_EstadoInscripcion {
-    aceptada = 'Aceptada',
-    rechazada = 'Rechazada'
+    ACEPTADO = 'ACEPTADO',
+    RECHAZADO = 'RECHAZADO',
+    PENDIENTE = 'PENDIENTE'
 }
 
 export enum Enum_FaseProyecto {
