@@ -21,6 +21,27 @@ const userSchema = new mongoose.Schema<IUser>({
     apellido: { type: String, required: true},
     rol: {type: String, required: true, enum: Enum_Rol},
     estado: {type: String, enum: Enum_EstadoUsuario, default: Enum_EstadoUsuario.PENDIENTE}
+},  {
+    toJSON: {virtuals:true},
+    toObject: {virtuals:true}
+});
+
+userSchema.virtual('proyectosLiderados', {
+    ref: 'Proyecto',
+    localField: '_id',
+    foreignField: 'lider',
+  });
+  
+userSchema.virtual('avancesCreados', {
+    ref: 'Avance',
+    localField: '_id',
+    foreignField: 'creadoPor',
+});  
+
+userSchema.virtual('inscripciones', {
+    ref: 'Inscription',
+    localField: '_id',
+    foreignField: 'estudiante',
 });
 
 export default mongoose.model<IUser>('User', userSchema);

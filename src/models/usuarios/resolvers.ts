@@ -3,7 +3,7 @@ import User from "./User";
 export const resolversUsuario = {
     Query: {
         Usuarios: async(parent: any, args: any) => {
-            const usuarios = await User.find();
+            const usuarios = await User.find().populate('inscripciones');
 
             return usuarios;
         },

@@ -11,6 +11,7 @@ dotenv.config();
 
 
 const getUserData = (token: any) => {
+    if (!token) return null
     const verify = validateToken(token.split(' ')[1]);
     console.log(verify);
     if(verify) {
