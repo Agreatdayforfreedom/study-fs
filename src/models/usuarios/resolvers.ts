@@ -3,7 +3,8 @@ import User from "./User";
 export const resolversUsuario = {
     Query: {
         Usuarios: async(parent: any, args: any) => {
-            const usuarios = await User.find().populate('inscripciones');
+
+            const usuarios = await User.find({...args.filtro}).populate('inscripciones');
 
             return usuarios;
         },
