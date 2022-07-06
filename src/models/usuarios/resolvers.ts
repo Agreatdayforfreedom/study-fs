@@ -42,6 +42,10 @@ export const resolversUsuario = {
             });
             return usuarioEditado;
         },
+        editarPerfil: async(parent:any, args:any) => {
+            const usuarioEditado = await User.findByIdAndUpdate(args._id, {...args.campos}, {new: true})
+            return usuarioEditado;
+        },
         eliminarUsuario: async(parent: any, args: any) => {
             if(Object.keys(args).includes('_id')) {
                 const usuarioEliminado = await User.findOneAndDelete({_id: args._id}); 

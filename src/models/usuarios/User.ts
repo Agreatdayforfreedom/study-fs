@@ -9,6 +9,7 @@ export interface IUser {
     identificacion: string;
     nombre: string;
     apellido: string;
+    foto: string;
     rol: string;
     estado: string;
 }
@@ -19,6 +20,7 @@ const userSchema = new mongoose.Schema<IUser>({
     password: { type: String, required: true },
     nombre: { type: String, required: true },
     apellido: { type: String, required: true},
+    foto: { type: String },
     rol: {type: String, required: true, enum: Enum_Rol},
     estado: {type: String, enum: Enum_EstadoUsuario, default: Enum_EstadoUsuario.PENDIENTE}
 },  {
