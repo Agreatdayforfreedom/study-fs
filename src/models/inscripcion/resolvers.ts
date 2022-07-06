@@ -1,16 +1,28 @@
+import Project from "../proyectos/Project";
+import User from "../usuarios/User";
 import Inscription from "./Inscription";
 
 const resolversInscripcion = {
+
+    Inscripcion: {
+        proyecto: async(parent: any, args: any) => {
+            return await Project.findOne({_id: parent.proyecto});
+        },
+        estudiante: async(parent: any, args: any) => {
+            return await User.findOne({_id: parent.estudiante});
+        }
+    },
+
     Query: {
         inscripciones: async(parent: any, args: any) => {
-            const inscripciones = await Inscription.find().populate('proyecto').populate('estudiante');
+            const inscripciones = await Inscription.find();
             return inscripciones;
         },
+
     },
     Mutation: {
         crearInscripcion: async(parent: any, args: any) => {
             const inscripcion = await Inscription.create({
-                estado: args.estado,
                 fechaIngreso: args.fechaIngreso,
                 fechaEgreso: args.fechaEgreso,
                 proyecto: args.proyecto,

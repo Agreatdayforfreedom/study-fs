@@ -1,9 +1,25 @@
 import { argsToArgsConfig } from "graphql/type/definition";
+import Inscription from "../inscripcion/Inscription";
+import User from "../usuarios/User";
 import Project from "./Project";
 export const resolversProyecto = {
+    Proyecto: {
+      lider: async(parent: any, args: any) => {
+        const user = await User.findOne({
+          _id: parent.lider._id,
+        });
+        return user;
+      },
+      inscripciones: async(parent: any, args: any) => {
+        const inscripciones = await Inscription.find({
+          proyecto: parent._id
+        });
+        return inscripciones;
+      }
+    },
     Query: {
       Proyectos: async(parent: any, args: any) => {
-        const proyectos = await Project.find().populate('lider').populate('avances').populate('inscripciones');
+        const proyectos = await Project.find();
         return proyectos;
       }
     },
