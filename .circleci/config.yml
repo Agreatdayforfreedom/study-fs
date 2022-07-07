@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+  heroku: circleci/heroku@0.0.10
+
+jobs:
+  base:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - node/install
+          pkg-manager: npm
+      - run: 
+          name: Ejecutar tests
+          command: npm run test
